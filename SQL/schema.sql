@@ -20,21 +20,21 @@ DROP TABLE IF EXISTS cleo_rooms, cleo_timeSlots, cleo_users, cleo_bookings, cleo
 
 -- Define a table to store the rooms
 CREATE TABLE cleo_rooms (
-	r_id INT AUTO_INCREMENT,
+	r_id INT NOT NULL AUTO_INCREMENT,
 	r_roomNumber VARCHAR(16) NOT NUll,
 	PRIMARY KEY (r_id)
 );
 
 -- Define a table to store the time-slots
 CREATE TABLE cleo_timeSlots (
-	ts_id INT AUTO_INCREMENT,
+	ts_id INT NOT NULL AUTO_INCREMENT,
 	ts_time VARCHAR(16) NOT NULL,
 	PRIMARY KEY (ts_id)
 );
 
 -- Define the table to store users
 CREATE TABLE cleo_users (
-	u_id INT AUTO_INCREMENT,
+	u_id INT NOT NULL AUTO_INCREMENT,
 	u_facebookId INT NOT NULL,
 	u_username VARCHAR(16) NOT NULL,
 	u_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -43,7 +43,7 @@ CREATE TABLE cleo_users (
 
 -- Define the table to store room bookings
 CREATE TABLE cleo_bookings (
-	b_id INT NOT NULL,
+	b_id INT NOT NULL AUTO_INCREMENT,
 	b_userId INT,
 	b_roomId INT,
 	b_timeSlot1Id INT,
@@ -56,7 +56,7 @@ CREATE TABLE cleo_bookings (
 
 -- Define the table to store pin numbers to confirm actions
 CREATE TABLE cleo_confirmationPins (
-	cp_id INT AUTO_INCREMENT,
+	cp_id INT NOT NULL AUTO_INCREMENT,
 	cp_bookingId INT,
 	cp_pinNumber VARCHAR(16) NOT NULL,
 	PRIMARY KEY (cp_id)
