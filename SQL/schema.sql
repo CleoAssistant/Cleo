@@ -47,7 +47,7 @@ CREATE TABLE cleo_bookings (
 	b_userId INT,
 	b_roomId INT,
 	b_timeSlot1Id INT,
-	b_timeSlot2Id INT,
+	b_length ENUM('1-hour', '2-hours') NOT NULL DEFAULT '1-hour',
 	b_bookingDate DATE NOT NULL,
 	b_status ENUM('pending-confirm', 'confirmed', 'pending-cancel', 'cancelled') NOT NULL DEFAULT 'pending-confirm',
 	b_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -78,11 +78,6 @@ REFERENCES cleo_rooms (r_id);
 ALTER TABLE cleo_bookings
 ADD CONSTRAINT b_ts1
 FOREIGN KEY (b_timeSlot1Id)
-REFERENCES cleo_timeSlots (ts_id);
-
-ALTER TABLE cleo_bookings
-ADD CONSTRAINT b_ts2
-FOREIGN KEY (b_timeSlot2Id)
 REFERENCES cleo_timeSlots (ts_id);
 
 ALTER TABLE cleo_confirmationPins
